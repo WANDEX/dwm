@@ -1,4 +1,4 @@
-# dwm
+![](dwm.png)\
 patch set compatible with dwm-6.2 (20190203)
 
 Extra stuff added to vanilla dwm:
