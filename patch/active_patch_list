@@ -9,3 +9,7 @@
 |A  ./patch/layout/dwm-horizgrid-6.1.diff
 |A  ./patch/6.2/dwm-noborderfloatingfix-6.2.diff
 |A  ./patch/6.2/dwm-restartsig-20180523-6.2.diff
+|A  ./patch/tag/dwm-tag_common-6.2.diff
+|A  ./patch/tag/dwm-nametag-prepend-6.1.diff
+|A  ./patch/tag/dwm-alternativetags-6.2.diff
+|A  ./patch/tag/dwm-pertag-perseltag-6.2.diff

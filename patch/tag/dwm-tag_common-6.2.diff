@@ -1,0 +1,47 @@
+diff --git a/config.def.h b/config.def.h
+index 875885b..222745d 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -14,7 +14,11 @@ static const Bool showbar           = True;     /* False means no bar */
+ static const Bool topbar            = True;     /* False means bottom bar */
+
+ /* tagging */
+-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
++#define MAX_TAGNAME_LEN 14		/* excludes TAG_PREPEND */
++#define TAG_PREPEND "%1i:"		/* formatted as 2 chars */
++#define MAX_TAGLEN 16			/* altogether */
++static char tags[][MAX_TAGLEN] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
++static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
+ static const Rule rules[] = {
+ 	/* xprop(1):
+@@ -79,6 +82,8 @@ static Key keys[] = {
+ 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
+ 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+ 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
++	{ MODKEY,                       XK_n,      togglealttag,   {0} },
++	{ MODKEY|ShiftMask,             XK_n,      nametag,        {0} },
+ 	TAGKEYS(                        XK_1,                      0)
+ 	TAGKEYS(                        XK_2,                      1)
+ 	TAGKEYS(                        XK_3,                      2)
+
+diff -up a/dwm.c b/dwm.c
+--- a/dwm.c	2020-05-23 00:20:34.877944603 +0200
++++ b/dwm.c	2020-06-22 12:49:55.298859682 +0200
+@@ -111,6 +111,7 @@ typedef struct {
+ 	void (*arrange)(Monitor *);
+ } Layout;
+
++typedef struct Pertag Pertag;
+ struct Monitor {
+ 	char ltsymbol[16];
+ 	float mfact;
+@@ -130,6 +131,8 @@ struct Monitor {
+ 	Monitor *next;
+ 	Window barwin;
+ 	const Layout *lt[2];
++	Pertag *pertag;
++	unsigned int alttag;
+ };
+
+ typedef struct {
