@@ -1,2 +1,11 @@
 # ignores data after # character (comment string)
-./patch/6.2/dwm-fix_color_fonts-6.2.diff
+|A  ./patch/6.2/dwm-fix_color_fonts-6.2.diff
+|A  ./patch/layout/dwm-config.def.h-6.2.diff
+|A  ./patch/layout/dwm-common_hunks-6.1.diff
+|A  ./patch/layout/dwm-bottomstack-6.1.diff
+|A  ./patch/layout/dwm-centeredmaster-6.1.diff
+|A  ./patch/layout/dwm-deck-6.0.diff
+|A  ./patch/layout/dwm-gaplessgrid-6.1.diff
+|A  ./patch/layout/dwm-horizgrid-6.1.diff
+|A  ./patch/6.2/dwm-noborderfloatingfix-6.2.diff
+|A  ./patch/6.2/dwm-restartsig-20180523-6.2.diff
