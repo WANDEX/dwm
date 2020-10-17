@@ -1,0 +1,23 @@
+--- ../dwm-6.2/config.def.h	2019-02-02 15:55:28.000000000 +0300
++++ ./config.def.h	2020-10-17 16:04:10.941001383 +0300
+@@ -36,11 +36,20 @@ static const float mfact     = 0.55; /*
+ static const int nmaster     = 1;    /* number of clients in master area */
+ static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+ 
++#include "gaplessgrid.c"
++#include "horizgrid.c"
+ static const Layout layouts[] = {
+ 	/* symbol     arrange function */
+ 	{ "[]=",      tile },    /* first entry is default */
+ 	{ "><>",      NULL },    /* no layout function means floating behavior */
+ 	{ "[M]",      monocle },
++	{ "TTT",      bstack },                 /* +bind setlayout key! */
++	{ "===",      bstackhoriz },            /* +bind setlayout key! */
++	{ "|M|",      centeredmaster },         /* +bind setlayout key! */
++	{ "<M>",      centeredfloatingmaster }, /* +bind setlayout key! */
++	{ "[D]",      deck },                   /* +bind setlayout key! */
++	{ "##V",      gaplessgrid },            /* +bind setlayout key! */
++	{ "##H",      horizgrid },              /* +bind setlayout key! */
+ };
+ 
+ /* key definitions */
