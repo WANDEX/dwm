@@ -1,0 +1,61 @@
+diff --git a/dwm.c b/dwm.c
+index 4465af1..c1117ec 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -117,6 +117,7 @@ struct Monitor {
+ 	int nmaster;
+ 	int num;
+ 	int by;               /* bar geometry */
++	int eby;	      /* extra bar geometry */
+ 	int mx, my, mw, mh;   /* screen size */
+ 	int wx, wy, ww, wh;   /* window area  */
+ 	unsigned int seltags;
+@@ -129,6 +130,7 @@ struct Monitor {
+ 	Client *stack;
+ 	Monitor *next;
+ 	Window barwin;
++	Window extrabarwin;
+ 	const Layout *lt[2];
+ };
+
+@@ -505,7 +508,9 @@ cleanupmon(Monitor *mon)
+ 		m->next = mon->next;
+ 	}
+ 	XUnmapWindow(dpy, mon->barwin);
++	XUnmapWindow(dpy, mon->extrabarwin);
+ 	XDestroyWindow(dpy, mon->barwin);
++	XDestroyWindow(dpy, mon->extrabarwin);
+ 	free(mon);
+ }
+
+@@ -1825,12 +1846,15 @@ updatebarpos(Monitor *m)
+ {
+ 	m->wy = m->my;
+ 	m->wh = m->mh;
++	m->wh -= bh * m->showbar * 2;
++	m->wy = m->showbar ? m->wy + bh : m->wy;
+ 	if (m->showbar) {
+-		m->wh -= bh;
+-		m->by = m->topbar ? m->wy : m->wy + m->wh;
+-		m->wy = m->topbar ? m->wy + bh : m->wy;
+-	} else
++		m->by = m->topbar ? m->wy - bh : m->wy + m->wh;
++		m->eby = m->topbar ? m->wy + m->wh : m->wy - bh;
++	} else {
+ 		m->by = -bh;
++		m->eby = -bh;
++	}
+ }
+
+ void
+@@ -2067,7 +2103,7 @@ wintomon(Window w)
+ 	if (w == root && getrootptr(&x, &y))
+ 		return recttomon(x, y, 1, 1);
+ 	for (m = mons; m; m = m->next)
+-		if (w == m->barwin)
++		if (w == m->barwin || w == m->extrabarwin)
+ 			return m;
+ 	if ((c = wintoclient(w)))
+ 		return c->mon;
+--
+2.22.0
