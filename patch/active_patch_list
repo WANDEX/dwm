@@ -13,3 +13,10 @@
 |A  ./patch/tag/dwm-nametag-prepend-6.1.diff
 |A  ./patch/tag/dwm-alternativetags-6.2.diff
 |A  ./patch/tag/dwm-pertag-perseltag-6.2.diff
+|A  ./patch/bar/dwm-statusallmons-6.2.diff
+|A  ./patch/bar/dwm-extrabar-6.2.diff
+|A  ./patch/bar/dwm-statuscmd-signal-6.2.diff
+|A  ./patch/bar/dwm-systray-6.2.diff
+|A  ./patch/bar/dwm-bar_dwm.c.diff
+|A  ./patch/bar/dwm-bar_config.def.h.diff
+|A  ./patch/bar/dwm-bar_after_all_fix-6.2.diff
