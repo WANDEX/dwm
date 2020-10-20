@@ -25,3 +25,5 @@
 |A  ./patch/other/dwm-xresources-6.2.diff
 |A  ./patch/other/dwm-xresources_scratchpads_config.def.h.diff
 |A  ./patch/other/dwm-actualfullscreen-20191112-cb3f58a.diff
+|A  ./patch/other/dwm-stacker-6.2.diff
+|R  ./patch/last/dwm-keys_config.def.h-6.2.diff
