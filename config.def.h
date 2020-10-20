@@ -69,11 +69,11 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "[D]",      deck },                   /* +bind setlayout key! */
 	{ "TTT",      bstack },                 /* +bind setlayout key! */
 	{ "===",      bstackhoriz },            /* +bind setlayout key! */
 	{ "|M|",      centeredmaster },         /* +bind setlayout key! */
 	{ "<M>",      centeredfloatingmaster }, /* +bind setlayout key! */
-	{ "[D]",      deck },                   /* +bind setlayout key! */
 	{ "##V",      gaplessgrid },            /* +bind setlayout key! */
 	{ "##H",      horizgrid },              /* +bind setlayout key! */
 };
@@ -137,7 +137,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_n,      togglealttag,   {0} },
+	{ MODKEY|ControlMask,           XK_n,      togglealttag,   {0} },
 	{ MODKEY|ShiftMask,             XK_n,      nametag,        {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
@@ -150,9 +150,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {1} },
 	{ MODKEY|ControlMask|ShiftMask, XK_Escape,      quit,           {0} },
-	{ MODKEY|ShiftMask,		XK_grave,	togglescratch,	{.ui = 0} },
-	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
-	{ MODKEY|ShiftMask,		XK_p,		togglescratch,	{.ui = 2} },
+	{ MODKEY|ShiftMask,             XK_grave,       togglescratch,  {.ui = 0} },
+	{ MODKEY,                       XK_F3,          togglescratch,  {.ui = 1} },
+	{ MODKEY|ShiftMask,             XK_p,           togglescratch,  {.ui = 2} },
 };
 
 /* button definitions */
