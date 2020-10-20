@@ -1,5 +1,4 @@
 # ignores data after # character (comment string)
-|A  ./patch/6.2/dwm-fix_color_fonts-6.2.diff
 |A  ./patch/layout/dwm-config.def.h-6.2.diff
 |A  ./patch/layout/dwm-common_hunks-6.1.diff
 |A  ./patch/layout/dwm-bottomstack-6.1.diff
@@ -7,8 +6,6 @@
 |A  ./patch/layout/dwm-deck-6.0.diff
 |A  ./patch/layout/dwm-gaplessgrid-6.1.diff
 |A  ./patch/layout/dwm-horizgrid-6.1.diff
-|A  ./patch/6.2/dwm-noborderfloatingfix-6.2.diff
-|A  ./patch/6.2/dwm-restartsig-20180523-6.2.diff
 |A  ./patch/tag/dwm-tag_common-6.2.diff
 |A  ./patch/tag/dwm-nametag-prepend-6.1.diff
 |A  ./patch/tag/dwm-alternativetags-6.2.diff
@@ -20,3 +17,6 @@
 |A  ./patch/bar/dwm-bar_dwm.c.diff
 |A  ./patch/bar/dwm-bar_config.def.h.diff
 |A  ./patch/bar/dwm-bar_after_all_fix-6.2.diff
+|A  ./patch/other/dwm-fix_color_fonts-6.2.diff
+|A  ./patch/other/dwm-noborderfloatingfix-6.2.diff
+|A  ./patch/other/dwm-restartsig-20180523-6.2.diff
