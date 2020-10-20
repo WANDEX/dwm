@@ -113,9 +113,9 @@
  	TAGKEYS(                        XK_9,                      8)
  	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {1} },
  	{ MODKEY|ControlMask|ShiftMask, XK_Escape,      quit,           {0} },
-+	{ MODKEY|ShiftMask,		XK_grave,	togglescratch,	{.ui = 0} },
-+	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
-+	{ MODKEY|ShiftMask,		XK_p,		togglescratch,	{.ui = 2} },
++	{ MODKEY|ShiftMask,             XK_grave,       togglescratch,  {.ui = 0} },
++	{ MODKEY,                       XK_F3,          togglescratch,  {.ui = 1} },
++	{ MODKEY|ShiftMask,             XK_p,           togglescratch,  {.ui = 2} },
  };
 
  /* button definitions */
