@@ -20,3 +20,7 @@
 |A  ./patch/other/dwm-fix_color_fonts-6.2.diff
 |A  ./patch/other/dwm-noborderfloatingfix-6.2.diff
 |A  ./patch/other/dwm-restartsig-20180523-6.2.diff
+|A  ./patch/other/dwm-sticky-6.1.diff
+|A  ./patch/other/dwm-scratchpads-20200414-728d397b.diff
+|A  ./patch/other/dwm-xresources-6.2.diff
+|A  ./patch/other/dwm-xresources_scratchpads_config.def.h.diff
