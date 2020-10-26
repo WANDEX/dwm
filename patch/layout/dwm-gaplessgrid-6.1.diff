@@ -1,6 +1,6 @@
-diff '--color=auto' -up ../dwm-6.2/config.def.h ./config.def.h
---- ../dwm-6.2/gaplessgrid.c	1970-01-01 03:00:00.000000000 +0300
-+++ ./gaplessgrid.c	2020-10-12 19:53:05.204348502 +0300
+diff '--color=auto' -ruNp ../dwm-6.2/layout/gaplessgrid.c ./layout/gaplessgrid.c
+--- ../dwm-6.2/layout/gaplessgrid.c	1970-01-01 03:00:00.000000000 +0300
++++ ./layout/gaplessgrid.c	2020-10-22 23:03:51.459760961 +0300
 @@ -0,0 +1,35 @@
 +void
 +gaplessgrid(Monitor *m) {
