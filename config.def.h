@@ -62,20 +62,22 @@ static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
-#include "gaplessgrid.c"
-#include "horizgrid.c"
+#include "layout/bottomstack.c"
+#include "layout/centeredmaster.c"
+#include "layout/deck.c"
+#include "layout/gaplessgrid.c"
+#include "layout/horizgrid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
-	{ "[D]",      deck },                   /* +bind setlayout key! */
 	{ "TTT",      bstack },                 /* +bind setlayout key! */
-	{ "===",      bstackhoriz },            /* +bind setlayout key! */
+	{ "[D]",      deck },                   /* +bind setlayout key! */
 	{ "|M|",      centeredmaster },         /* +bind setlayout key! */
 	{ "<M>",      centeredfloatingmaster }, /* +bind setlayout key! */
 	{ "##V",      gaplessgrid },            /* +bind setlayout key! */
 	{ "##H",      horizgrid },              /* +bind setlayout key! */
+	{ "[M]",      monocle },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
 };
 
 /* key definitions */

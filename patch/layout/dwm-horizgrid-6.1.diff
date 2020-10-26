@@ -1,18 +1,6 @@
-From 064e1d48631cd9b03f32b42d7be79677197ee42f Mon Sep 17 00:00:00 2001
-From: Marshall Mason <marshallmason3@gmail.com>
-Date: Mon, 9 Nov 2015 12:38:28 -0800
-Subject: [PATCH] Added horizgrid function
-
----
- horizgrid.c  | 32 ++++++++++++++++++++++++++++++++
- 1 files changed, 32 insertions(+)
- create mode 100644 horizgrid.c
-
-diff --git a/horizgrid.c b/horizgrid.c
-new file mode 100644
-index 0000000..51ce0f8
---- /dev/null
-+++ b/horizgrid.c
+diff '--color=auto' -ruNp ../dwm-6.2/layout/horizgrid.c ./layout/horizgrid.c
+--- ../dwm-6.2/layout/horizgrid.c	1970-01-01 03:00:00.000000000 +0300
++++ ./layout/horizgrid.c	2020-10-22 23:03:51.459760961 +0300
 @@ -0,0 +1,32 @@
 +void
 +horizgrid(Monitor *m) {
@@ -46,6 +34,3 @@ index 0000000..51ce0f8
 +		}
 +	}
 +}
---
-2.1.4
-

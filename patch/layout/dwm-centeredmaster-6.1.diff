@@ -1,12 +1,7 @@
-diff --git a/dwm.c b/dwm.c
-index 0362114..1e81412 100644
---- a/dwm.c
-+++ b/dwm.c
-@@ -2139,3 +2141,106 @@ main(int argc, char *argv[])
- 	XCloseDisplay(dpy);
- 	return EXIT_SUCCESS;
- }
-+
+diff '--color=auto' -ruNp ../dwm-6.2/layout/centeredmaster.c ./layout/centeredmaster.c
+--- ../dwm-6.2/layout/centeredmaster.c	1970-01-01 03:00:00.000000000 +0300
++++ ./layout/centeredmaster.c	2020-10-22 23:03:51.459760961 +0300
+@@ -0,0 +1,102 @@
 +void
 +centeredmaster(Monitor *m)
 +{
