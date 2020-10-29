@@ -1,16 +1,22 @@
 /* See LICENSE file for copyright and license details. */
 
+/* tray and bar */
+static unsigned int systraypinning  = 0;    /* 0: follow monitor, >0: pin to monitor X */
+static unsigned int systrayspacing  = 2;    /* systray spacing */
+static int systraypinningfailfirst  = 1;    /* if fails display on: 1-first, 0-last monitor*/
+static int showsystray              = 1;    /* 0 means no systray */
+static char statussep               = ';';  /* separator between status bars */
+
 /* appearance */
-static const char statussep         = ';';      /* separator between status bars */
-static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
-static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
-static const int showsystray        = 1;        /* 0 means no systray */
-static unsigned int borderpx        = 2;        /* border pixel of windows */
-static unsigned int snap            = 32;       /* snap pixel */
-static int showbar                  = 1;        /* 0 means no bar */
-static int topbar                   = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=8" };
+static unsigned int borderpx        = 2;    /* border pixel of windows */
+static unsigned int snap            = 10;   /* snap pixel */
+static int showbar                  = 1;    /* 0 means no bar */
+static int topbar                   = 1;    /* 0 means bottom bar */
+static const char *fonts[] = {
+       "monospace:size=8",
+       "JoyPixels:pixelsize=8:antialias=true:autohint=true",
+       "FontAwesome:pixelsize=8",
+};
 static char dmenufont[]             = "monospace:size=8";
 static char normbgcolor[]           = "#3E494C";
 static char normfgcolor[]           = "#84969A";
@@ -24,24 +30,10 @@ static char *colors[][3] = {
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
-typedef struct {
-	const char *name;
-	const void *cmd;
-} Sp;
-const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {"st", "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
-const char *spcmd3[] = {"st", "-n", "spomodoro", "-g", "120x34", "-e", "rlwrap", "pomodoro", NULL };
-static Sp scratchpads[] = {
-	/* name          cmd  */
-	{"spterm",      spcmd1},
-	{"spcalc",      spcmd2},
-	{"spomodoro",   spcmd3},
-};
-
 /* tagging */
-#define MAX_TAGNAME_LEN 14		/* excludes TAG_PREPEND */
-#define TAG_PREPEND "%1i:"		/* formatted as 2 chars */
-#define MAX_TAGLEN 16			/* altogether */
+#define MAX_TAGNAME_LEN 14             /* excludes TAG_PREPEND */
+#define TAG_PREPEND "%1i:"             /* formatted as 2 chars */
+#define MAX_TAGLEN 16                  /* altogether */
 static char tags[][MAX_TAGLEN] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -50,17 +42,21 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class        instance        title   tags mask   isfloating  monitor */
-	{ "Gimp",	NULL,		NULL,	0,		1,	-1 },
-	{ NULL,		"spterm",	NULL,	SPTAG(0),	1,	-1 },
-	{ NULL,		"spcalc",	NULL,	SPTAG(1),	1,	-1 },
-	{ NULL,		"spomodoro",	NULL,	SPTAG(2),	1,	-1 },
+    /* class        instance    title           tgmask isf mon float x,y,w,h   fbrdrpx skey*/
+    { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0  },
+    { NULL, "pulseeffects",     NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0  },
+    { NULL, "google-chrome",    NULL,           1 << 6, 0, -1, 0,0,0,0,             2,  0  },
+    { "mpv",    "MPVstream",    NULL,           1 << 5, 0,  1, 0,0,0,0,             2,  0  },
+    { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1300,700,      2, 't' },
+    { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,700,       4, 'c' },
+    { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1000,700,      2, 'p' },
+    { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,1920,888,        0, 'd' },
 };
 
 /* layout(s) */
-static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static int nmaster     = 1;    /* number of clients in master area */
-static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static float mfact     = 0.5;   /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;     /* number of clients in master area */
+static int resizehints = 1;     /* 1 means respect size hints in tiled resizals */
 
 #include "layout/bottomstack.c"
 #include "layout/centeredmaster.c"
@@ -81,12 +77,21 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
+#define AltMask Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
+#define STACKKEYS(MOD,ACTION) \
+	{ MOD, XK_n,                    ACTION##stack,            {.i = INC(+1) } }, \
+	{ MOD, XK_e,                    ACTION##stack,            {.i = INC(-1) } }, \
+	{ MOD, XK_backslash,            ACTION##stack,            {.i = PREVSEL } }, \
+	{ MOD, XK_apostrophe,           ACTION##stack,            {.i = 0 } }, \
+	{ MOD, XK_semicolon,            ACTION##stack,            {.i = 1 } }, \
+	{ MOD, XK_bracketleft,          ACTION##stack,            {.i = 2 } }, \
+	{ MOD, XK_bracketright,         ACTION##stack,            {.i = -1 } },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
@@ -96,42 +101,48 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "st", NULL };
 
+/*First arg only serves to match against key in rules*/
+static const char *sp_term[] = {"t", "st", "-t", "scratchpad", NULL};
+static const char *sp_calc[] = {"c", "st", "-t", "calc", "-f", "monospace:size=16", "-e", "bc", "-lq", NULL };
+static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e", "pomodoro", NULL };
+static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };
+
 /* Xresources preferences to load at startup */
 ResourcePref resources[] = {
-		{ "normbgcolor",        STRING,  &normbgcolor },
-		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
-		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
-		{ "borderpx",           INTEGER, &borderpx },
-		{ "snap",               INTEGER, &snap },
-		{ "showbar",            INTEGER, &showbar },
-		{ "topbar",             INTEGER, &topbar },
-		{ "nmaster",            INTEGER, &nmaster },
-		{ "resizehints",        INTEGER, &resizehints },
-		{ "mfact",              FLOAT,   &mfact },
+	{ "systraypinning",             INTEGER,   &systraypinning                  },
+	{ "systrayspacing",             INTEGER,   &systrayspacing                  },
+	{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
+	{ "showsystray",                INTEGER,   &showsystray                     },
+	{ "statussep",                  STRING,    &statussep                       },
+	{ "borderpx",                   INTEGER,   &borderpx                        },
+	{ "snap",                       INTEGER,   &snap                            },
+	{ "showbar",                    INTEGER,   &showbar                         },
+	{ "topbar",                     INTEGER,   &topbar                          },
+	{ "dmenufont",                  STRING,    &dmenufont                       },
+	{ "normbgcolor",                STRING,    &normbgcolor                     },
+	{ "normfgcolor",                STRING,    &normfgcolor                     },
+	{ "selbgcolor",                 STRING,    &selbgcolor                      },
+	{ "selfgcolor",                 STRING,    &selfgcolor                      },
+	{ "normbordercolor",            STRING,    &normbordercolor                 },
+	{ "selbordercolor",             STRING,    &selbordercolor                  },
+	{ "mfact",                      FLOAT,     &mfact                           },
+	{ "nmaster",                    INTEGER,   &nmaster                         },
+	{ "resizehints",                INTEGER,   &resizehints                     },
 };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_i,      setmfact,       {.f = +0.05} },
+	{ MODKEY|AltMask,               XK_h,      setmfact,       {.f = -0.025} },
+	{ MODKEY|AltMask,               XK_i,      setmfact,       {.f = +0.025} },
+	{ MODKEY|ShiftMask,             XK_h,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_s,      togglesticky,   {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -139,8 +150,21 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY|ControlMask,           XK_n,      togglealttag,   {0} },
-	{ MODKEY|ShiftMask,             XK_n,      nametag,        {0} },
+	{ MODKEY,                       XK_a,      togglealttag,   {0} },
+	{ MODKEY|ShiftMask,             XK_a,      nametag,        {0} },
+	{ MODKEY,                       XK_f,      togglefullscr,  {0} },
+	{ MODKEY|ControlMask,           XK_f,      togglefloating, {0} },
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,             XK_d,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_c,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_v,      setlayout,      {.v = &layouts[5]} },
+	{ MODKEY|ShiftMask,             XK_v,      setlayout,      {.v = &layouts[6]} },
+	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[7]} },
+	{ MODKEY|ShiftMask|ControlMask, XK_f,      setlayout,      {.v = &layouts[8]} },
+	STACKKEYS(MODKEY,                          focus)
+	STACKKEYS(MODKEY|ShiftMask,                push)
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -150,26 +174,25 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {1} },
-	{ MODKEY|ControlMask|ShiftMask, XK_Escape,      quit,           {0} },
-	{ MODKEY|ShiftMask,             XK_grave,       togglescratch,  {.ui = 0} },
-	{ MODKEY,                       XK_F3,          togglescratch,  {.ui = 1} },
-	{ MODKEY|ShiftMask,             XK_p,           togglescratch,  {.ui = 2} },
+	{ MODKEY|ShiftMask,             XK_Escape, quit,           {1} },
+	{ MODKEY|ControlMask|ShiftMask, XK_Escape, quit,           {0} },
+	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sp_term } },
+	{ MODKEY,                       XK_space,  togglescratch,  {.v = sp_drop } },
+	{ MODKEY,                       XK_F3,     togglescratch,  {.v = sp_calc } },
+	{ MODKEY,                       XK_p,      togglescratch,  {.v = sp_pmdr } },
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
 	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
 	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
 	{ ClkStatusText,        0,              Button4,        sigdwmblocks,   {.i = 4} },
 	{ ClkStatusText,        0,              Button5,        sigdwmblocks,   {.i = 5} },
 	{ ClkStatusText,        ShiftMask,      Button1,        sigdwmblocks,   {.i = 6} },
+	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },

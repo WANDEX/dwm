@@ -68,9 +68,9 @@ index 9fd0286..dc0d219 100644
  static void applyrules(Client *c);
  static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);
 @@ -234,6 +248,8 @@ static int xerror(Display *dpy, XErrorEvent *ee);
- static void centeredmaster(Monitor *m);
- static void centeredfloatingmaster(Monitor *m);
- static void deck(Monitor *m);
+ static int xerrordummy(Display *dpy, XErrorEvent *ee);
+ static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void zoom(const Arg *arg);
 +static void load_xresources(void);
 +static void resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst);
 
