@@ -26,6 +26,6 @@ index 4465af1..2dd959d 100644
  	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
  	configure(c);
  	XSync(dpy, False);
--- 
+--
 2.26.2
 
