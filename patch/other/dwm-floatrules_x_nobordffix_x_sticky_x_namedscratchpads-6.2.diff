@@ -46,24 +46,28 @@ diff -u dwm/dwm.c dwmnew/dwm.c
 		}
 	}
 	if (ch.res_class)
-@@ -1049,7 +1049,10 @@ manage(Window w, XWindowAttributes *wa)
+@@ -1049,7 +1049,12 @@ manage(Window w, XWindowAttributes *wa)
 		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
 	c->bw = borderpx;
 
 -	wc.border_width = c->bw;
-+	if (c->isfloating)
++	if (c->isfullscreen)
++		wc.border_width = 0;
++	else if (c->isfloating)
 +		wc.border_width = c->floatborderpx;
 +	else
 +		wc.border_width = c->bw;
  	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
  	XSetWindowBorder(dpy, w, scheme[SchemeNorm][ColBorder].pixel);
  	configure(c); /* propagates border_width, if size doesn't change */
-@@ -1281,7 +1299,18 @@
+@@ -1281,7 +1299,20 @@
  	c->oldy = c->y; c->y = wc.y = y;
  	c->oldw = c->w; c->w = wc.width = w;
  	c->oldh = c->h; c->h = wc.height = h;
 -	wc.border_width = c->bw;
-+	if (c->isfloating)
++	if (c->isfullscreen)
++		wc.border_width = 0;
++	else if (c->isfloating)
 +		wc.border_width = c->floatborderpx;
 +	else
 +		wc.border_width = c->bw;
