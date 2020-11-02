@@ -53,7 +53,7 @@ Edit keyboard keys or default variable values in *config.h*.\
 Make a backup of your *config.h* before `make clean`, as by default it removes *config.h* as well.\
 `sudo make install` to apply config changes, and press (`super+shift+esc` to restart dwm)
 
-## about .diff patch files included inside patch/ dir
+## About .diff patch files included inside patch/ dir
 
 Almost all patches contain changes and are not original, many .diff files are merged because the same parts of the files are being edited.
 
