@@ -34,13 +34,16 @@
 - [warp](https://dwm.suckless.org/patches/warp/)
 - [xresources](https://dwm.suckless.org/patches/xresources/)
 
-###### this patch is the reason libxft-bgra is required!
+###### this patch is the reason `libxft-bgra` is required!
 dwm-fix_color_fonts-6.2.diff - support utf-8 colored emoji characters in fonts.
 
 ## Installation
 
-You must have `libxft-bgra` installed until the libxft upstream is fixed.\
 After making any config changes that you want, but `make`, `sudo make install` it.
+
+###### You must have `libxft-bgra` installed until the libxft upstream is fixed.
+
+This build of dwm does not block color emoji in the status/info bar, so you must install [libxft-bgra](https://aur.archlinux.org/packages/libxft-bgra/) from the AUR, which fixes a libxft color emoji rendering problem, otherwise dwm will crash upon trying to render one. Hopefully this fix will be in all libxft soon enough.
 
 ## Configuration
 
