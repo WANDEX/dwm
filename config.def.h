@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* tray and bar */
-static unsigned int systraypinning  = 0;    /* 0: follow monitor, >0: pin to monitor X */
+static unsigned int systraypinning  = 2;    /* 0: follow monitor, >0: pin to monitor X */
 static unsigned int systrayspacing  = 2;    /* systray spacing */
 static int systraypinningfailfirst  = 1;    /* if fails display on: 1-first, 0-last monitor*/
 static int showsystray              = 1;    /* 0 means no systray */
@@ -9,7 +9,7 @@ static char statussep               = ';';  /* separator between status bars */
 
 /* appearance */
 static unsigned int borderpx        = 2;    /* border pixel of windows */
-static unsigned int snap            = 10;   /* snap pixel */
+static unsigned int snap            = 8;    /* snap pixel */
 static int showbar                  = 1;    /* 0 means no bar */
 static int topbar                   = 1;    /* 0 means bottom bar */
 static const char *fonts[] = {
@@ -19,9 +19,9 @@ static const char *fonts[] = {
 };
 static char dmenufont[]             = "monospace:size=8";
 static char normbgcolor[]           = "#3E494C";
-static char normfgcolor[]           = "#84969A";
-static char selbgcolor[]            = "#32393A";
-static char selfgcolor[]            = "#97A6AA";
+static char normfgcolor[]           = "#E0E5E6";
+static char selfgcolor[]            = "#32393A";
+static char selbgcolor[]            = "#97A6AA";
 static char normbordercolor[]       = "#32393A";
 static char selbordercolor[]        = "#97A6AA";
 static char *colors[][3] = {
