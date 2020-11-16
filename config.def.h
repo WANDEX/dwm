@@ -9,7 +9,7 @@ static char statussep               = ';';  /* separator between status bars */
 
 /* appearance */
 static unsigned int borderpx        = 2;    /* border pixel of windows */
-static unsigned int snap            = 8;    /* snap pixel */
+static unsigned int snap            = 2;    /* snap pixel */
 static int showbar                  = 1;    /* 0 means no bar */
 static int topbar                   = 1;    /* 0 means bottom bar */
 static const char *fonts[] = {
@@ -47,10 +47,10 @@ static const Rule rules[] = {
     { NULL, "pulseeffects",     NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0  },
     { NULL, "google-chrome",    NULL,           1 << 6, 0, -1, 0,0,0,0,             2,  0  },
     { "mpv",    "MPVstream",    NULL,           1 << 5, 0,  1, 0,0,0,0,             2,  0  },
-    { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1300,700,      2, 't' },
-    { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,700,       4, 'c' },
-    { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1000,700,      2, 'p' },
-    { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,1920,888,        0, 'd' },
+    { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1200,700,      2, 't' },
+    { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,600,       4, 'c' },
+    { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1200,700,      2, 'p' },
+    { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,-1,888,          0, 'd' },
 };
 
 /* layout(s) */
@@ -175,7 +175,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape, quit,           {1} },
-	{ MODKEY|ControlMask|ShiftMask, XK_Escape, quit,           {0} },
+	{ MODKEY|ShiftMask|ControlMask, XK_Escape, quit,           {0} },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sp_term } },
 	{ MODKEY,                       XK_space,  togglescratch,  {.v = sp_drop } },
 	{ MODKEY,                       XK_F3,     togglescratch,  {.v = sp_calc } },
