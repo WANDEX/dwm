@@ -22,7 +22,7 @@ diff -u dwm/dwm.c dwmnew/dwm.c
  } Rule;
 
  /* function declarations */
-@@ -299,9 +305,23 @@ applyrules(Client *c)
+@@ -299,9 +305,29 @@ applyrules(Client *c)
  		{
  			c->isfloating = r->isfloating;
  			c->tags |= r->tags;
@@ -32,16 +32,22 @@ diff -u dwm/dwm.c dwmnew/dwm.c
  			if (m)
  				c->mon = m;
 +			if (r->isfloating) {
-+				if (r->floatx == -1)
-+					c->x = c->mon->mx + c->mon->mw / 2 - r->floatw / 2;
++				if (r->floatw == -1)
++					c->w = c->mon->mw - (c->floatborderpx * 2);
 +				else
++					c->w = r->floatw;
++				if (r->floath == -1)
++					c->h = c->mon->mh - (c->floatborderpx * 2) - (drw->fonts->h + 2) * 2;
++				else // (drw->fonts->h + 2) - bar height
++					c->h = r->floath;
++				if (r->floatx == -1)
++					c->x = c->mon->mx + c->mon->mw / 2 - c->w / 2 - c->floatborderpx;
++				else // (c->mon->mx) - for multi-monitor setup
 +					c->x = c->mon->mx + r->floatx;
 +				if (r->floaty == -1)
-+					c->y = c->mon->mh / 2 - r->floath / 2;
++					c->y = c->mon->mh / 2 - c->h / 2 - c->floatborderpx;
 +				else
 +					c->y = r->floaty;
-+				c->w = r->floatw;
-+				c->h = r->floath;
 +			}
 		}
 	}
