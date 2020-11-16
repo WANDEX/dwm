@@ -402,9 +402,9 @@ applyrules(Client *c)
 				c->mon = m;
 			if (r->isfloating) {
 				if (r->floatx == -1)
-					c->x = c->mon->mw / 2 - r->floatw / 2;
+					c->x = c->mon->mx + c->mon->mw / 2 - r->floatw / 2;
 				else
-					c->x = r->floatx;
+					c->x = c->mon->mx + r->floatx;
 				if (r->floaty == -1)
 					c->y = c->mon->mh / 2 - r->floath / 2;
 				else
