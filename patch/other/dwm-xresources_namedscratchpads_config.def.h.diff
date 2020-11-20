@@ -81,7 +81,7 @@
 +/*First arg only serves to match against key in rules*/
 +static const char *sp_term[] = {"t", "st", "-t", "scratchpad", NULL};
 +static const char *sp_calc[] = {"c", "st", "-t", "calc", "-f", "monospace:size=16", "-e", "bc", "-lq", NULL };
-+static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e", "exit0.sh", "rlwrap", "pomodoro", NULL };
++static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e", "pmdr", NULL };
 +static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };
 +
 +/* Xresources preferences to load at startup */
