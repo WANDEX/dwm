@@ -86,11 +86,11 @@
 +
 +/* Xresources preferences to load at startup */
 +ResourcePref resources[] = {
-+	{ "systraypinning",             INTEGER,   &systraypinning                  },
-+	{ "systrayspacing",             INTEGER,   &systrayspacing                  },
-+	{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
-+	{ "showsystray",                INTEGER,   &showsystray                     },
-+	{ "statussep",                  STRING,    &statussep                       },
++	//{ "systraypinning",             INTEGER,   &systraypinning                  },
++	//{ "systrayspacing",             INTEGER,   &systrayspacing                  },
++	//{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
++	//{ "showsystray",                INTEGER,   &showsystray                     },
++	//{ "statussep",                  STRING,    &statussep                       },
 +	{ "borderpx",                   INTEGER,   &borderpx                        },
 +	{ "snap",                       INTEGER,   &snap                            },
 +	{ "showbar",                    INTEGER,   &showbar                         },
@@ -110,12 +110,11 @@
  static Key keys[] = {
  	/* modifier                     key        function        argument */
  	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-@@ -118,8 +160,12 @@ static Key keys[] = {
+@@ -118,7 +160,12 @@ static Key keys[] = {
  	TAGKEYS(                        XK_7,                      6)
  	TAGKEYS(                        XK_8,                      7)
  	TAGKEYS(                        XK_9,                      8)
--	{ MODKEY|ShiftMask,             XK_Escape,      quit,           {1} },
--	{ MODKEY|ControlMask|ShiftMask, XK_Escape,      quit,           {0} },
+-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 +	{ MODKEY|ShiftMask,             XK_Escape, quit,           {1} },
 +	{ MODKEY|ShiftMask|ControlMask, XK_Escape, quit,           {0} },
 +	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sp_term } },

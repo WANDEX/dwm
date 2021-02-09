@@ -56,7 +56,7 @@
  	{ MODKEY,                       XK_s,      togglesticky,   {0} },
  	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
  	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-@@ -151,6 +154,19 @@ static Key keys[] = {
+@@ -151,6 +154,21 @@ static Key keys[] = {
  	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
  	{ MODKEY,                       XK_a,      togglealttag,   {0} },
  	{ MODKEY|ShiftMask,             XK_a,      nametag,        {0} },
@@ -71,6 +71,8 @@
 +	{ MODKEY|ShiftMask,             XK_v,      setlayout,      {.v = &layouts[6]} },
 +	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[7]} },
 +	{ MODKEY|ShiftMask|ControlMask, XK_f,      setlayout,      {.v = &layouts[8]} },
++	{ MODKEY|ShiftMask,             XK_Escape, quit,           {1} },
++	{ MODKEY|ShiftMask|ControlMask, XK_Escape, quit,           {0} },
 +	STACKKEYS(MODKEY,                          focus)
 +	STACKKEYS(MODKEY|ShiftMask,                push)
  	TAGKEYS(                        XK_1,                      0)
