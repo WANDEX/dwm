@@ -2,7 +2,7 @@ diff --git a/config.def.h b/config.def.h
 index 1c0b587..b67825e 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -103,7 +103,9 @@ static Button buttons[] = {
+@@ -103,7 +103,12 @@ static Button buttons[] = {
  	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
  	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
  	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
@@ -10,6 +10,9 @@ index 1c0b587..b67825e 100644
 +	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
 +	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
 +	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
++	{ ClkStatusText,        0,              Button4,        sigdwmblocks,   {.i = 4} },
++	{ ClkStatusText,        0,              Button5,        sigdwmblocks,   {.i = 5} },
++	{ ClkStatusText,        ShiftMask,      Button1,        sigdwmblocks,   {.i = 6} },
  	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
  	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
  	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
