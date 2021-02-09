@@ -1,12 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 
-/* tray and bar */
-static unsigned int systraypinning  = 2;    /* 0: follow monitor, >0: pin to monitor X */
-static unsigned int systrayspacing  = 2;    /* systray spacing */
-static int systraypinningfailfirst  = 1;    /* if fails display on: 1-first, 0-last monitor*/
-static int showsystray              = 1;    /* 0 means no systray */
-static char statussep               = ';';  /* separator between status bars */
-
 /* appearance */
 static unsigned int borderpx        = 2;    /* border pixel of windows */
 static unsigned int snap            = 2;    /* snap pixel */
@@ -109,11 +102,11 @@ static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };
 
 /* Xresources preferences to load at startup */
 ResourcePref resources[] = {
-	{ "systraypinning",             INTEGER,   &systraypinning                  },
-	{ "systrayspacing",             INTEGER,   &systrayspacing                  },
-	{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
-	{ "showsystray",                INTEGER,   &showsystray                     },
-	{ "statussep",                  STRING,    &statussep                       },
+	//{ "systraypinning",             INTEGER,   &systraypinning                  },
+	//{ "systrayspacing",             INTEGER,   &systrayspacing                  },
+	//{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
+	//{ "showsystray",                INTEGER,   &showsystray                     },
+	//{ "statussep",                  STRING,    &statussep                       },
 	{ "borderpx",                   INTEGER,   &borderpx                        },
 	{ "snap",                       INTEGER,   &snap                            },
 	{ "showbar",                    INTEGER,   &showbar                         },
@@ -163,6 +156,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_v,      setlayout,      {.v = &layouts[6]} },
 	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[7]} },
 	{ MODKEY|ShiftMask|ControlMask, XK_f,      setlayout,      {.v = &layouts[8]} },
+	{ MODKEY|ShiftMask,             XK_Escape, quit,           {1} },
+	{ MODKEY|ShiftMask|ControlMask, XK_Escape, quit,           {0} },
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
 	TAGKEYS(                        XK_1,                      0)
@@ -186,13 +181,10 @@ static Key keys[] = {
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
 	/* click                event mask      button          function        argument */
-	{ ClkStatusText,        0,              Button1,        sigdwmblocks,   {.i = 1} },
-	{ ClkStatusText,        0,              Button2,        sigdwmblocks,   {.i = 2} },
-	{ ClkStatusText,        0,              Button3,        sigdwmblocks,   {.i = 3} },
-	{ ClkStatusText,        0,              Button4,        sigdwmblocks,   {.i = 4} },
-	{ ClkStatusText,        0,              Button5,        sigdwmblocks,   {.i = 5} },
-	{ ClkStatusText,        ShiftMask,      Button1,        sigdwmblocks,   {.i = 6} },
+	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
+	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
+	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
