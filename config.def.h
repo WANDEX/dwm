@@ -42,6 +42,7 @@ static const Rule rules[] = {
     { "mpv",    "MPVstream",    NULL,           1 << 5, 0,  1, 0,0,0,0,             2,  0  },
     { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1200,700,      2, 't' },
     { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,600,       4, 'c' },
+    { NULL,         NULL,       "muse",         0,      1, -1, 0,8,-1,-1,           0, 'm' },
     { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1200,700,      2, 'p' },
     { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,-1,888,          0, 'd' },
 };
@@ -97,6 +98,7 @@ static const char *termcmd[]  = { "st", NULL };
 /*First arg only serves to match against key in rules*/
 static const char *sp_term[] = {"t", "st", "-t", "scratchpad", NULL};
 static const char *sp_calc[] = {"c", "st", "-t", "calc", "-f", "monospace:size=16", "-e", "bc", "-lq", NULL };
+static const char *sp_muse[] = {"m", "st", "-t", "muse", "-e", "ncmpcpp", NULL };
 static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e", "pmdr", NULL };
 static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };
 
@@ -172,9 +174,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Escape, quit,           {1} },
 	{ MODKEY|ShiftMask|ControlMask, XK_Escape, quit,           {0} },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sp_term } },
-	{ MODKEY,                       XK_space,  togglescratch,  {.v = sp_drop } },
 	{ MODKEY,                       XK_F3,     togglescratch,  {.v = sp_calc } },
+	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = sp_muse } },
 	{ MODKEY,                       XK_p,      togglescratch,  {.v = sp_pmdr } },
+	{ MODKEY,                       XK_space,  togglescratch,  {.v = sp_drop } },
 };
 
 /* button definitions */
