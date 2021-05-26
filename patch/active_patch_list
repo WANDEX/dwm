@@ -22,5 +22,3 @@
 |A  ./patch/other/dwm-stacker-6.2.diff
 |A  ./patch/other/dwm-xresources_namedscratchpads_config.def.h.diff
 |A  ./patch/last/dwm-keys_config.def.h-6.2.diff
-|A  ./patch/bar/dwm-statuscmd-signal-6.2.diff
-|A  ./patch/bar/dwm-statusallmons-6.2.diff
