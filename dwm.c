@@ -881,8 +881,6 @@ drawbar(Monitor *m)
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		m->tw = drawstatusbar(m, bh, stext, stw, stp, 1);
-		m->tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
-		drw_text(drw, m->ww - m->tw - stw, 0, m->tw, bh, stp, stext, 0);
 	}
 
 	for (c = m->clients; c; c = c->next) {
@@ -933,7 +931,9 @@ drawbar(Monitor *m)
 	}
 	else { /* clear status on other monitors */
 		drw_setscheme(drw, scheme[SchemeNorm]);
+		/* without this, bar content will be drawn in extrabar */
 		drw_rect(drw, 0, 0, m->ww, bh, 1, 1);
+		/* hides all extrabar content */
 		drw_map(drw, m->extrabarwin, 0, 0, m->ww, bh);
 	}
 }
