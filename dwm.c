@@ -283,10 +283,10 @@ static void resource_load(XrmDatabase db, char *name, enum resource_type rtype, 
 
 /* variables */
 static const char broken[] = "broken";
-static char stext[1024];
-static char rawstext[1024];
-static char estext[1024];
-static char rawestext[1024];
+static char stext[2048];
+static char rawstext[2048];
+static char estext[2048];
+static char rawestext[2048];
 
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
