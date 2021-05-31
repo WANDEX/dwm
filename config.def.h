@@ -56,11 +56,11 @@ static float mfact     = 0.5;   /* factor of master area size [0.05..0.95] */
 static int nmaster     = 1;     /* number of clients in master area */
 static int resizehints = 1;     /* 1 means respect size hints in tiled resizals */
 
-#include "layout/bottomstack.c"
-#include "layout/centeredmaster.c"
-#include "layout/deck.c"
-#include "layout/gaplessgrid.c"
-#include "layout/horizgrid.c"
+#include "patch/include/layout/bottomstack.c"
+#include "patch/include/layout/centeredmaster.c"
+#include "patch/include/layout/deck.c"
+#include "patch/include/layout/gaplessgrid.c"
+#include "patch/include/layout/horizgrid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */

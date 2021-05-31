@@ -69,8 +69,8 @@
 +static int nmaster     = 1;     /* number of clients in master area */
 +static int resizehints = 1;     /* 1 means respect size hints in tiled resizals */
 
- #include "layout/bottomstack.c"
- #include "layout/centeredmaster.c"
+ #include "patch/include/layout/bottomstack.c"
+ #include "patch/include/layout/centeredmaster.c"
 @@ -78,9 +97,39 @@ static const Layout layouts[] = {
 
  /* commands */

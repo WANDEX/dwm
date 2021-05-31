@@ -1,10 +1,4 @@
 # ignores data after # character (comment string)
-|A  ./patch/layout/dwm-bottomstack-6.1.diff
-|A  ./patch/layout/dwm-centeredmaster-6.1.diff
-|A  ./patch/layout/dwm-deck-6.0.diff
-|A  ./patch/layout/dwm-gaplessgrid-6.1.diff
-|A  ./patch/layout/dwm-horizgrid-6.1.diff
-|A  ./patch/layout/dwm-config.def.h-6.2.diff
 |A  ./patch/tag/dwm-hide_vacant_tags-6.2.diff
 |A  ./patch/tag/dwm-tag_common-6.2.diff
 |A  ./patch/tag/dwm-nametag-prepend-6.1.diff
@@ -20,5 +14,6 @@
 |A  ./patch/other/dwm-floatrules_x_nobordffix_x_sticky_x_namedscratchpads-6.2.diff
 |A  ./patch/other/dwm-actualfullscreen-20191112-cb3f58a.diff
 |A  ./patch/other/dwm-stacker-6.2.diff
+|A  ./patch/other/dwm-layout_config.def.h.diff
 |A  ./patch/other/dwm-xresources_namedscratchpads_config.def.h.diff
 |A  ./patch/last/dwm-keys_config.def.h-6.2.diff
