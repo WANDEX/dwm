@@ -1,0 +1,33 @@
+--- a/drw.h	2021-05-31 21:41:59.032844909 +0300
++++ b/drw.h	2021-05-31 22:04:39.681350416 +0300
+@@ -39,7 +39,7 @@ void drw_font_getexts(Fnt *font, const c
+ 
+ /* Colorscheme abstraction */
+ void drw_clr_create(Drw *drw, Clr *dest, const char *clrname);
+-Clr *drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount);
++Clr *drw_scm_create(Drw *drw, char *clrnames[], size_t clrcount);
+ 
+ /* Cursor abstraction */
+ Cur *drw_cur_create(Drw *drw, int shape);
+--- a/drw.c	2021-05-31 21:41:58.656176813 +0300
++++ b/drw.c	2021-05-31 22:03:45.851145571 +0300
+@@ -196,7 +196,7 @@ drw_clr_create(Drw *drw, Clr *dest, cons
+ /* Wrapper to create color schemes. The caller has to call free(3) on the
+  * returned color scheme when done using it. */
+ Clr *
+-drw_scm_create(Drw *drw, const char *clrnames[], size_t clrcount)
++drw_scm_create(Drw *drw, char *clrnames[], size_t clrcount)
+ {
+ 	size_t i;
+ 	Clr *ret;
+--- a/dwm.c	2021-05-31 21:41:58.966177989 +0300
++++ b/dwm.c	2021-05-31 22:12:16.619756550 +0300
+@@ -2639,6 +2639,8 @@ main(int argc, char *argv[])
+ 	if (!(dpy = XOpenDisplay(NULL)))
+ 		die("dwm: cannot open display");
+ 	checkotherwm();
++	XrmInitialize();
++	load_xresources();
+ 	setup();
+ #ifdef __OpenBSD__
+ 	if (pledge("stdio rpath proc exec", NULL) == -1)
