@@ -1,6 +1,6 @@
 --- a/config.def.h	2020-10-23 20:01:28.777658089 +0300
 +++ b/config.def.h	2020-10-23 19:37:58.398732419 +0300
-@@ -8,21 +8,26 @@ static int showsystray              = 1;
+@@ -8,21 +9,27 @@ static int showsystray              = 1;
  static char statussep               = ';';  /* separator between status bars */
 
  /* appearance */
@@ -35,6 +35,7 @@
 +static char selbgcolor[]            = "#97A6AA";
 +static char normbordercolor[]       = "#32393A";
 +static char selbordercolor[]        = "#97A6AA";
++#include "patch/include/config/termcolors.h"
 +static char *colors[][3] = {
 +       /*               fg           bg           border   */
 +       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -71,7 +72,7 @@
 
  #include "patch/include/layout/bottomstack.c"
  #include "patch/include/layout/centeredmaster.c"
-@@ -78,9 +97,39 @@ static const Layout layouts[] = {
+@@ -78,9 +98,40 @@ static const Layout layouts[] = {
 
  /* commands */
  static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -107,6 +108,7 @@
 +	{ "mfact",                      FLOAT,     &mfact                           },
 +	{ "nmaster",                    INTEGER,   &nmaster                         },
 +	{ "resizehints",                INTEGER,   &resizehints                     },
++	{ "termcolor",                  STRING,    &termcolor                       },
 +};
 +
  static Key keys[] = {

@@ -21,6 +21,7 @@ static char selfgcolor[]            = "#32393A";
 static char selbgcolor[]            = "#97A6AA";
 static char normbordercolor[]       = "#32393A";
 static char selbordercolor[]        = "#97A6AA";
+#include "patch/include/config/termcolors.h"
 static char *colors[][ColCount] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
@@ -127,6 +128,7 @@ ResourcePref resources[] = {
 	{ "mfact",                      FLOAT,     &mfact                           },
 	{ "nmaster",                    INTEGER,   &nmaster                         },
 	{ "resizehints",                INTEGER,   &resizehints                     },
+	{ "termcolor",                  STRING,    &termcolor                       },
 };
 
 static Key keys[] = {
