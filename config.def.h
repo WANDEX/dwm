@@ -108,28 +108,7 @@ static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e
 static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };
 
 /* Xresources preferences to load at startup */
-ResourcePref resources[] = {
-	//{ "systraypinning",             INTEGER,   &systraypinning                  },
-	//{ "systrayspacing",             INTEGER,   &systrayspacing                  },
-	//{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
-	//{ "showsystray",                INTEGER,   &showsystray                     },
-	//{ "statussep",                  STRING,    &statussep                       },
-	{ "borderpx",                   INTEGER,   &borderpx                        },
-	{ "snap",                       INTEGER,   &snap                            },
-	{ "showbar",                    INTEGER,   &showbar                         },
-	{ "topbar",                     INTEGER,   &topbar                          },
-	{ "dmenufont",                  STRING,    &dmenufont                       },
-	{ "normbgcolor",                STRING,    &normbgcolor                     },
-	{ "normfgcolor",                STRING,    &normfgcolor                     },
-	{ "selbgcolor",                 STRING,    &selbgcolor                      },
-	{ "selfgcolor",                 STRING,    &selfgcolor                      },
-	{ "normbordercolor",            STRING,    &normbordercolor                 },
-	{ "selbordercolor",             STRING,    &selbordercolor                  },
-	{ "mfact",                      FLOAT,     &mfact                           },
-	{ "nmaster",                    INTEGER,   &nmaster                         },
-	{ "resizehints",                INTEGER,   &resizehints                     },
-	{ "termcolor",                  STRING,    &termcolor                       },
-};
+#include "patch/include/config/xresources.h"
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
