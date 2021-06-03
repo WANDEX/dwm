@@ -798,7 +798,6 @@ createmon(void)
 
 	if (!(m->pertag = (Pertag *)calloc(1, sizeof(Pertag))))
 		die("fatal: could not malloc() %u bytes\n", sizeof(Pertag));
-	// m->pertag = ecalloc(1, sizeof(Pertag));
 	m->pertag->curtag = m->pertag->prevtag = 1;
 
 	for (i = 0; i <= LENGTH(tags); i++) {
@@ -869,7 +868,7 @@ void
 drawbar(Monitor *m)
 {
 	int x, w, wdelta;
-        int stw = 0, stp = 0, invert;
+	int stw = 0, stp = 0, invert;
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
 
@@ -2056,21 +2055,6 @@ togglealttag()
 void
 togglebar(const Arg *arg)
 {
-	/*unsigned int i;
-	selmon->showbar = !selmon->showbar;
-	for(i=0; i<LENGTH(tags); ++i)
-		if(selmon->tagset[selmon->seltags] & 1<<i)
-			selmon->pertag->showbars[i+1] = selmon->showbar;
-
-	if(selmon->pertag->curtag == 0)
-	{
-		selmon->pertag->showbars[0] = selmon->showbar;
-	}
-	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
-	if (selmon->extrabarwin)
-		XMoveResizeWindow(dpy, selmon->extrabarwin, selmon->wx, selmon->eby, selmon->ww, bh);
-	arrange(selmon);*/
-
 	selmon->showbar = !selmon->showbar;
 	updatebarpos(selmon);
 	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
