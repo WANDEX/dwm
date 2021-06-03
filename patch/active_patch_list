@@ -12,6 +12,7 @@
 |A  ./patch/other/dwm-namedscratchpads-6.2.diff
 |A  ./patch/other/dwm-sticky-6.1.diff
 |A  ./patch/other/dwm-floatrules_x_nobordffix_x_sticky_x_namedscratchpads-6.2.diff
+|A  ./patch/other/dwm-rule_macros.diff
 |A  ./patch/other/dwm-actualfullscreen-20191112-cb3f58a.diff
 |A  ./patch/other/dwm-stacker-6.2.diff
 |A  ./patch/last/config.diff

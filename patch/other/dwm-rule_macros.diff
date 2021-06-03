@@ -1,0 +1,21 @@
+--- a/dwm.c	2021-06-02 00:19:24.253472762 +0300
++++ a/dwm.c	2021-06-03 16:23:53.117448467 +0300
+@@ -159,6 +159,18 @@ typedef struct {
+ 	const char scratchkey;
+ } Rule;
+ 
++/* RULE macros */
++#define RULE(...) { .monitor = -1, ##__VA_ARGS__ },
++
++/* RULE macro helper macros */
++#define FLOATING , .isfloating = 1
++#define FLOATX , .floatx = 0
++#define FLOATY , .floaty = 0
++#define FLOATW , .floatw = 0
++#define FLOATH , .floath = 0
++#define FLOATBPX , .floatborderpx = 2
++#define SCRATCHK , .scratchkey = 0
++
+ /* function declarations */
+ static void applyrules(Client *c);
+ static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);

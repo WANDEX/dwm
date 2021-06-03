@@ -1,8 +1,40 @@
+/* There are two options when it comes to per-client rules:
+ *  - a typical struct table or
+ *  - using the RULE macro
+ *
+ * A traditional struct table looks like this:
+ *    // class      instance  title  wintype  tags mask  isfloating  monitor
+ *    { "Gimp",     NULL,     NULL,  NULL,    1 << 4,    0,          -1 },
+ *    { "Firefox",  NULL,     NULL,  NULL,    1 << 7,    0,          -1 },
+ *
+ * The RULE macro has the default values set for each field allowing you to only
+ * specify the values that are relevant for your rule, e.g.
+ *
+ *    RULE(.class = "Gimp", .tags = 1 << 4)
+ *    RULE(.class = "Firefox", .tags = 1 << 7)
+ *
+ * Refer to the Rule struct definition for the list of available fields.
+ */
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
+    /* xprop(1):
+     *      WM_CLASS(STRING) = instance, class
+     *      WM_NAME(STRING) = title
+     */
+
+    /* place window with substring in title on tag (useful with restartsig patch) */
+    RULE(.title = "[.1]", .tags = 1 << 0)
+    RULE(.title = "[.2]", .tags = 1 << 1)
+    RULE(.title = "[.3]", .tags = 1 << 2)
+    RULE(.title = "[.4]", .tags = 1 << 3)
+    RULE(.title = "[.5]", .tags = 1 << 4)
+    RULE(.title = "[.6]", .tags = 1 << 5)
+    RULE(.title = "[.7]", .tags = 1 << 6)
+    RULE(.title = "[.8]", .tags = 1 << 7)
+    RULE(.title = "[.9]", .tags = 1 << 8)
+    /* monitor */
+    RULE(.title = "(.0)", .monitor = 0)
+    RULE(.title = "(.1)", .monitor = 1)
+
     /* class        instance    title           tgmask isf mon float x,y,w,h   fbrdrpx skey*/
     { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0  },
     { NULL, "pulseeffects",     NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0  },
