@@ -864,6 +864,17 @@ dirtomon(int dir)
 	return m;
 }
 
+Monitor *
+numtomon(int num)
+{
+	Monitor *m = NULL;
+	int i = 0;
+	for (m = mons, i=0; m->next && i < num; m = m->next) {
+		i++;
+	}
+	return m;
+}
+
 void
 drawbar(Monitor *m)
 {
@@ -871,9 +882,10 @@ drawbar(Monitor *m)
 	int stw = 0, stp = 0, invert;
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
+	Monitor *extrabmon = numtomon(extrabarmon);
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == selmon) { /* status is only drawn on selected monitor */
+	if (1 || m == selmon) { /* 1 - status is drawn on all monitors */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		m->tw = drawstatusbar(m, bh, stext, stw, stp, 1);
 	}
@@ -915,20 +927,13 @@ drawbar(Monitor *m)
 	}
 	drw_map(drw, m->barwin, 0, 0, m->ww - stw, bh);
 
-	if (m == selmon && m->extrabarwin)
-	{ /* extra status is only drawn on selected monitor */
+	if (m->extrabarwin && (extrabarmon == -1 || m == extrabmon))
+	{ /* extra status is drawn everywhere, or only on extrabarmon monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		drw_rect(drw, 0, 0, m->ww, bh, 1, 1);
 
 		w = drawstatusbar(m, bh, estext, 0, 0, ebalign);
 		m->etw = w;
-		drw_map(drw, m->extrabarwin, 0, 0, m->ww, bh);
-	}
-	else { /* clear status on other monitors */
-		drw_setscheme(drw, scheme[SchemeNorm]);
-		/* without this, bar content will be drawn in extrabar */
-		drw_rect(drw, 0, 0, m->ww, bh, 1, 1);
-		/* hides all extrabar content */
 		drw_map(drw, m->extrabarwin, 0, 0, m->ww, bh);
 	}
 }
@@ -2223,6 +2228,7 @@ updatebars(void)
 {
 	unsigned int w;
 	Monitor *m;
+	Monitor *extrabmon = numtomon(extrabarmon);
 	XSetWindowAttributes wa = {
 		.override_redirect = True,
 		.background_pixmap = ParentRelative,
@@ -2239,7 +2245,7 @@ updatebars(void)
 			XMapRaised(dpy, m->barwin);
 			XSetClassHint(dpy, m->barwin, &ch);
 		}
-		if (!m->extrabarwin)
+		if (!m->extrabarwin && (extrabarmon == -1 || m == extrabmon))
 		{
 			m->extrabarwin = XCreateWindow(dpy, root, m->wx, m->eby, m->ww, bh, 0, DefaultDepth(dpy, screen),
 					CopyFromParent, DefaultVisual(dpy, screen),
@@ -2257,7 +2263,12 @@ updatebarpos(Monitor *m)
 	m->wy = m->my;
 	m->wh = m->mh;
 	int num_bars;
-	int has_extrabar = 1;
+	int has_extrabar;
+	Monitor *extrabmon = numtomon(extrabarmon);
+	if (extrabarmon == -1 || m == extrabmon)
+		has_extrabar = 1;
+	else
+		has_extrabar = 0;
 	num_bars = m->showbar * (1 + has_extrabar);
 	m->wh = m->wh - bh * num_bars;
 	m->wy = m->showbar ? m->wy + bh : m->wy;
@@ -2440,7 +2451,9 @@ updatestatus(void)
 		}
 		copyvalidchars(stext, rawstext);
 	}
-	drawbar(selmon);
+	Monitor* m;
+	for(m = mons; m; m = m->next)
+		drawbar(m);
 }
 
 void

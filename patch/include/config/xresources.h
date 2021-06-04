@@ -5,6 +5,7 @@ ResourcePref resources[] = {
 	//{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
 	//{ "showsystray",                INTEGER,   &showsystray                     },
 	//{ "statussep",                  STRING,    &statussep                       },
+	{ "extrabarmon",                INTEGER,   &extrabarmon                     },
 	{ "borderpx",                   INTEGER,   &borderpx                        },
 	{ "snap",                       INTEGER,   &snap                            },
 	{ "showbar",                    INTEGER,   &showbar                         },
