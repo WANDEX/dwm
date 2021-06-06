@@ -7,6 +7,7 @@ ResourcePref resources[] = {
         { "statussep",                  STRING,    &statussep                       },
         { "ebalign",                    STRING,    &ebalign                         },
 	{ "extrabarmon",                INTEGER,   &extrabarmon                     },
+	{ "showextrabar",               INTEGER,   &showextrabar                    },
 	{ "borderpx",                   INTEGER,   &borderpx                        },
 	{ "snap",                       INTEGER,   &snap                            },
 	{ "showbar",                    INTEGER,   &showbar                         },

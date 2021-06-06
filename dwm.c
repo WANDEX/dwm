@@ -135,6 +135,7 @@ struct Monitor {
 	unsigned int sellt;
 	unsigned int tagset[2];
 	int showbar;
+	int showextrabar;
 	int topbar;
 	Client *clients;
 	Client *sel;
@@ -791,6 +792,7 @@ createmon(void)
 	m->mfact = mfact;
 	m->nmaster = nmaster;
 	m->showbar = showbar;
+	m->showextrabar = showextrabar;
 	m->topbar = topbar;
 	m->lt[0] = &layouts[0];
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
@@ -2265,21 +2267,30 @@ updatebarpos(Monitor *m)
 	int num_bars;
 	int has_extrabar;
 	Monitor *extrabmon = numtomon(extrabarmon);
-	if (extrabarmon == -1 || m == extrabmon)
+	if (m->showextrabar && (extrabarmon == -1 || m == extrabmon))
 		has_extrabar = 1;
 	else
 		has_extrabar = 0;
 	num_bars = m->showbar * (1 + has_extrabar);
 	m->wh = m->wh - bh * num_bars;
 	m->wy = m->showbar ? m->wy + bh : m->wy;
-	if (m->showbar) {
+	/* togglebar() hides both bars, unlike toggleextrabar() */
+	if (!m->showextrabar && m->showbar) {
+		/* hide extrabar */
 		m->by = m->topbar ? m->wy - bh : m->wy + m->wh;
-		if (has_extrabar)
-			m->eby = m->topbar ? m->wy + m->wh : m->wy - bh;
-	} else {
+		m->eby = -bh;
+	} else if (m->showextrabar && !m->showbar) {
+		/* hide mainbar */
 		m->by = -bh;
-		if (has_extrabar)
-			m->eby = -bh;
+		m->eby = m->topbar ? m->wy + m->wh : m->wy - bh;
+	} else if (!m->showextrabar && !m->showbar) {
+		/* hide mainbar & extrabar */
+		m->by = -bh;
+		m->eby = -bh;
+	} else {
+		/* show mainbar & extrabar */
+		m->by = m->topbar ? m->wy - bh : m->wy + m->wh;
+		m->eby = m->topbar ? m->wy + m->wh : m->wy - bh;
 	}
 }
 

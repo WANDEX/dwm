@@ -4,6 +4,7 @@
 static char statussep               = ';';  /* separator between status bars */
 static int ebalign                  = 1;    /* extrabar alignment: 0 - left, 1 - right, 2 - center */
 static int extrabarmon              = 0;    /* extrabar monitor number: -1 - all monitors */
+static int showextrabar             = 1;    /* 0 means no bar */
 
 /* appearance */
 static unsigned int borderpx        = 2;    /* border pixel of windows */
