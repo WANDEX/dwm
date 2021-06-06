@@ -1,5 +1,12 @@
 /* See LICENSE file for copyright and license details. */
 
+/* systray */
+static unsigned int systraypinning  = 2;    /* 0: follows selected monitor, >0: pin systray to monitor X */
+static unsigned int systrayonleft   = 0;    /* 0: systray in the right corner, >0: left of status text */
+static unsigned int systrayspacing  = 0;    /* systray spacing */
+static int systraypinningfailfirst  = 1;    /* if pinning fails, 1: display on first monitor, 0: last */
+static int showsystray              = 1;    /* 0 means no systray */
+
 /* bar */
 static char statussep               = ';';  /* separator between status bars */
 static int ebalign                  = 1;    /* extrabar alignment: 0 - left, 1 - right, 2 - center */

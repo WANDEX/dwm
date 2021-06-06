@@ -1,11 +1,12 @@
 /* Xresources preferences to load at startup */
 ResourcePref resources[] = {
-	//{ "systraypinning",             INTEGER,   &systraypinning                  },
-	//{ "systrayspacing",             INTEGER,   &systrayspacing                  },
-	//{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
-	//{ "showsystray",                INTEGER,   &showsystray                     },
-        { "statussep",                  STRING,    &statussep                       },
-        { "ebalign",                    STRING,    &ebalign                         },
+	{ "systraypinning",             INTEGER,   &systraypinning                  },
+	{ "systrayonleft",              INTEGER,   &systrayonleft                   },
+	{ "systrayspacing",             INTEGER,   &systrayspacing                  },
+	{ "systraypinningfailfirst",    INTEGER,   &systraypinningfailfirst         },
+	{ "showsystray",                INTEGER,   &showsystray                     },
+	{ "statussep",                  STRING,    &statussep                       },
+	{ "ebalign",                    STRING,    &ebalign                         },
 	{ "extrabarmon",                INTEGER,   &extrabarmon                     },
 	{ "showextrabar",               INTEGER,   &showextrabar                    },
 	{ "borderpx",                   INTEGER,   &borderpx                        },
