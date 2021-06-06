@@ -18,3 +18,4 @@
 |A  ./patch/last/config.diff
 |A  ./patch/bar/dwm-bar.diff
 |A  ./patch/bar/dwm-bar_allmons.diff
+|A  ./patch/bar/dwm-bar_toggleextrabar.diff
