@@ -18,9 +18,11 @@
 
 ##### bar
 - [extrabar](https://dwm.suckless.org/patches/extrabar/)
+- [status2d(*extrabar, xresources, swap-save-restore*)](https://dwm.suckless.org/patches/status2d/)
 - [statusallmons](https://dwm.suckless.org/patches/statusallmons/)
-- [statuscmd-signal](https://dwm.suckless.org/patches/statuscmd/)
+- [statuscmd-signal(*dwmblocks, status2d*)](https://dwm.suckless.org/patches/statuscmd/)
 - [systray](https://dwm.suckless.org/patches/systray/)
+- toggleextrabar
 
 ##### other
 - [actualfullscreen](https://dwm.suckless.org/patches/actualfullscreen/) `super+f`
