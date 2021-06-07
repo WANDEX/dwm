@@ -51,18 +51,33 @@ This build of dwm does not block color emoji in the status/info bar, so you must
 
 After `make` command *config.h* file will be generated, based from *config.def.h*.\
 You will definitely need to **remap the keys** because I'm using the colemak, not qwerty layout.\
-Edit keyboard keys or default variable values in *config.h*.\
+Edit default variable values in *config.h*.
+
 Make a backup of your *config.h* before `make clean`, as by default it removes *config.h* as well.\
 `sudo make install` to apply config changes, and press (`super+shift+esc` to restart dwm)
 
+#### About configuration structure
+
+`patch/`-- all dirs except `patch/include/` dir, contain **.diff** files.\
+`patch/include/`--  there is some patch specific **.[c|h]** files with recognizable patch name.\
+`patch/include/config/`-- parts of config code. So, if you want to edit keyboard keys - edit them in **keys.h** etc.
+
+**include.[c|h]** -- includes all separate patch specific files. Those files contain separate patch specific functions.
+**include.c & include.h** -- the files themselves are the only files that is included inside **dwm.c**.
+
+This makes **dwm.c** more readable, and **.diff** files contain only changes that directly affect the main code.
+
 ## About .diff patch files included inside patch/ dir
 
-Almost all patches contain changes and are not original, many .diff files are merged because the same parts of the files are being edited.
+Almost all patches contain changes and are not original, many **.diff** files are merged because the same parts of the files are being edited.
 
 That is why I have included links to the original patch pages to make it easier to find them.
 
 If you keep the original patching order and apply the command `patch -p1 -f -R` in reverse order to each.\
 The files will revert to their original state, without failed hunks.
+
+Do not forget to remove from **include.c & include.h** patch specific files for patches that you are reversed,\
+and update config files in `patch/include/config/`, as they are not affected by **.diff** files.
 
 ##### [The order of applying a set of patches - from the first to the last.](https://github.com/WANDEX/dwm/blob/master/patch/active_patch_list)
 
