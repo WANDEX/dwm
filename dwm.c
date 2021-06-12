@@ -1510,8 +1510,12 @@ nametag(const Arg *arg) {
 
 	for(i = 0; i < LENGTH(tags); i++)
 		if(selmon->tagset[selmon->seltags] & (1 << i)) {
-			sprintf(tags[i], TAG_PREPEND, i+1);
-			strcat(tags[i], name);
+			if (strlen(name) > 0) {
+				sprintf(tags[i], TAG_PREPEND, i+1);
+				strcat(tags[i], name);
+			} else {
+				sprintf(tags[i], "%1i", i+1);
+			}
 		}
 	drawbars();
 }
