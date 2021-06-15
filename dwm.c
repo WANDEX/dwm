@@ -2184,8 +2184,17 @@ tile(Monitor *m)
 void
 togglealttag()
 {
+	int i;
 	selmon->alttag = !selmon->alttag;
-	drawbar(selmon);
+	if (selmon->alttag) {
+		for(i = 0; i < LENGTH(tagsalt); i++)
+			strcpy(tags[i], tagsalt[i]);
+	} else {
+		for(i = 0; i < LENGTH(tags); i++)
+			// work, but dismisses nametag defined names
+			sprintf(tags[i], "%1i", i+1);
+	}
+	drawbars();
 }
 
 void

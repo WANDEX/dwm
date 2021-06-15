@@ -34,15 +34,24 @@ index 4465af1..ee292e1 100644
  	int boxs = drw->fonts->h / 9;
  	int boxw = drw->fonts->h / 6 + 2;
  	unsigned int i, occ = 0, urg = 0;
-@@ -1696,6 +1699,13 @@ tile(Monitor *m)
+@@ -1696,6 +1699,22 @@ tile(Monitor *m)
  		}
  }
 
 +void
 +togglealttag()
 +{
++	int i;
 +	selmon->alttag = !selmon->alttag;
-+	drawbar(selmon);
++	if (selmon->alttag) {
++		for(i = 0; i < LENGTH(tagsalt); i++)
++			strcpy(tags[i], tagsalt[i]);
++	} else {
++		for(i = 0; i < LENGTH(tags); i++)
++			// work, but dismisses nametag defined names
++			sprintf(tags[i], "%1i", i+1);
++	}
++	drawbars();
 +}
 +
  void
