@@ -35,16 +35,18 @@ static const Rule rules[] = {
     RULE(.title = "(.0)", .monitor = 0)
     RULE(.title = "(.1)", .monitor = 1)
 
-    /* class        instance    title           tgmask isf mon float x,y,w,h   fbrdrpx skey*/
-    { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0  },
-    { NULL, "pulseeffects",     NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0  },
-    { NULL, "google-chrome",    NULL,           1 << 6, 0, -1, 0,0,0,0,             2,  0  },
-    { "mpv",    "MPVstream",    NULL,           1 << 5, 0,  1, 0,0,0,0,             2,  0  },
-    { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1200,700,      2, 't' },
-    { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,600,       4, 'c' },
-    { NULL,         NULL,       "muse",         0,      1, -1, 0,8,-1,-1,           0, 'm' },
-    { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1200,700,      2, 'p' },
-    { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,-1,888,          0, 'd' },
+    RULE(.title = "The-Matrix-Shell", .isfullscreen = 1)
+
+    /* class        instance    title           tgmask isf mon float x,y,w,h   fbrdrpx isF skey*/
+    { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0,  0  },
+    { NULL, "pulseeffects",     NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0,  0  },
+    { NULL, "google-chrome",    NULL,           1 << 6, 0, -1, 0,0,0,0,             2,  0,  0  },
+    { "mpv",    "MPVstream",    NULL,           1 << 5, 0,  1, 0,0,0,0,             2,  0,  0  },
+    { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1200,700,      2,  0, 't' },
+    { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,600,       4,  0, 'c' },
+    { NULL,         NULL,       "muse",         0,      1, -1, 0,8,-1,-1,           0,  0, 'm' },
+    { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1200,700,      2,  0, 'p' },
+    { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,-1,888,          0,  0, 'd' },
 };
 
 /*First arg only serves to match against key in rules*/

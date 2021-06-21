@@ -158,6 +158,7 @@ typedef struct {
 	int monitor;
 	int floatx, floaty, floatw, floath;
 	int floatborderpx;
+	int isfullscreen;
 	const char scratchkey;
 } Rule;
 
@@ -171,6 +172,7 @@ typedef struct {
 #define FLOATW , .floatw = 0
 #define FLOATH , .floath = 0
 #define FLOATBPX , .floatborderpx = 2
+#define FULLSC , .isfullscreen = 0
 #define SCRATCHK , .scratchkey = 0
 
 /* function declarations */
@@ -367,7 +369,11 @@ applyrules(Client *c)
 			for (m = mons; m && m->num != r->monitor; m = m->next);
 			if (m)
 				c->mon = m;
-			if (r->isfloating) {
+			if (r->isfullscreen) {
+				selmon->showbar = 1;
+				togglebar(NULL);
+				setfullscreen(c, 1);
+			} else if (r->isfloating) {
 				if (r->floatw == -1)
 					c->w = c->mon->mw - (c->floatborderpx * 2);
 				else

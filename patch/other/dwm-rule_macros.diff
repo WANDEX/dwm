@@ -1,6 +1,6 @@
 --- a/dwm.c	2021-06-02 00:19:24.253472762 +0300
 +++ a/dwm.c	2021-06-03 16:23:53.117448467 +0300
-@@ -159,6 +159,18 @@ typedef struct {
+@@ -159,6 +159,19 @@ typedef struct {
  	const char scratchkey;
  } Rule;
  
@@ -14,6 +14,7 @@
 +#define FLOATW , .floatw = 0
 +#define FLOATH , .floath = 0
 +#define FLOATBPX , .floatborderpx = 2
++#define FULLSC , .isfullscreen = 0
 +#define SCRATCHK , .scratchkey = 0
 +
  /* function declarations */
