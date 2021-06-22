@@ -1,4 +1,5 @@
 /* Patches */
+#include "actualfullscreen.c"
 #include "xresources.c"
 #include "dwmblocks.c"
 #include "status2d.c"
