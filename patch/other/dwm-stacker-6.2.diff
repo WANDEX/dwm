@@ -42,7 +42,7 @@ index 9fd0286..6c302c3 100644
 +	Client *c, *p;
 
 -	if (!selmon->sel)
-+	if(i < 0)
++	if(i < 0 || selmon->sel->isfullscreen)
  		return;
 -	if (arg->i > 0) {
 -		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
