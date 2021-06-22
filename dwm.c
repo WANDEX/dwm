@@ -100,7 +100,8 @@ struct Client {
 	int bw, oldbw;
 	unsigned int tags;
 	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, issticky;
-	int floatborderpx;
+	int fbpx;
+	int hasfloatbw;
 	char scratchkey;
 	Client *next;
 	Client *snext;
@@ -157,7 +158,7 @@ typedef struct {
 	int isfloating;
 	int monitor;
 	int floatx, floaty, floatw, floath;
-	int floatborderpx;
+	int fbpx;
 	int isfullscreen;
 	const char scratchkey;
 } Rule;
@@ -166,12 +167,12 @@ typedef struct {
 #define RULE(...) { .monitor = -1, ##__VA_ARGS__ },
 
 /* RULE macro helper macros */
-#define FLOATING , .isfloating = 1
-#define FLOATX , .floatx = 0
-#define FLOATY , .floaty = 0
-#define FLOATW , .floatw = 0
-#define FLOATH , .floath = 0
-#define FLOATBPX , .floatborderpx = 2
+#define FLOATING , .isfloating = 0
+#define FLOATX , .floatx = -1
+#define FLOATY , .floaty = -1
+#define FLOATW , .floatw = -1
+#define FLOATH , .floath = -1
+#define FLOATBPX , .fbpx = 0
 #define FULLSC , .isfullscreen = 0
 #define SCRATCHK , .scratchkey = 0
 
@@ -365,32 +366,40 @@ applyrules(Client *c)
 			c->isfloating = r->isfloating;
 			c->tags |= r->tags;
 			c->scratchkey = r->scratchkey;
-			c->floatborderpx = r->floatborderpx;
-			for (m = mons; m && m->num != r->monitor; m = m->next);
-			if (m)
-				c->mon = m;
+			if (r->fbpx >= 0) {
+				c->fbpx = r->fbpx;
+				c->hasfloatbw = 1;
+			}
 			if (r->isfullscreen) {
+				c->fbpx = 0;
 				selmon->showbar = 1;
 				togglebar(NULL);
 				setfullscreen(c, 1);
-			} else if (r->isfloating) {
-				if (r->floatw == -1)
-					c->w = c->mon->mw - (c->floatborderpx * 2);
+			} else {
+				selmon->showbar = 0;
+				togglebar(NULL);
+			}
+			if (r->isfloating) {
+				if (r->floatw == -1 || !r->floatw)
+					c->w = c->mon->mw - (c->fbpx * 2);
 				else
 					c->w = r->floatw;
-				if (r->floath == -1)
-					c->h = c->mon->mh - (c->floatborderpx * 2) - (drw->fonts->h + 2) * 2;
+				if (r->floath == -1 || !r->floath)
+					c->h = c->mon->mh - (c->fbpx * 2) - (drw->fonts->h + 2) * 2;
 				else // (drw->fonts->h + 2) - bar height
 					c->h = r->floath;
-				if (r->floatx == -1)
-					c->x = c->mon->mx + c->mon->mw / 2 - c->w / 2 - c->floatborderpx;
+				if (r->floatx == -1 || !r->floatx)
+					c->x = c->mon->mx + c->mon->mw / 2 - c->w / 2 - c->fbpx;
 				else // (c->mon->mx) - for multi-monitor setup
 					c->x = c->mon->mx + r->floatx;
-				if (r->floaty == -1)
-					c->y = c->mon->mh / 2 - c->h / 2 - c->floatborderpx;
+				if (r->floaty == -1 || !r->floaty)
+					c->y = c->mon->mh / 2 - c->h / 2 - c->fbpx;
 				else
 					c->y = r->floaty;
 			}
+			for (m = mons; m && m->num != r->monitor; m = m->next);
+			if (m)
+				c->mon = m;
 		}
 	}
 	if (ch.res_class)
@@ -1339,10 +1348,10 @@ manage(Window w, XWindowAttributes *wa)
 		&& (c->x + (c->w / 2) < c->mon->wx + c->mon->ww)) ? bh : c->mon->my);
 	c->bw = borderpx;
 
-	if (c->isfullscreen)
+	if (c->isfloating && c->hasfloatbw && !c->isfullscreen)
+		wc.border_width = c->fbpx;
+	else if (c->isfullscreen)
 		wc.border_width = 0;
-	else if (c->isfloating)
-		wc.border_width = c->floatborderpx;
 	else
 		wc.border_width = c->bw;
 	XConfigureWindow(dpy, w, CWBorderWidth, &wc);
@@ -1650,10 +1659,10 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	c->oldy = c->y; c->y = wc.y = y;
 	c->oldw = c->w; c->w = wc.width = w;
 	c->oldh = c->h; c->h = wc.height = h;
-	if (c->isfullscreen)
+	if (c->isfloating && c->hasfloatbw && !c->isfullscreen)
+		wc.border_width = c->fbpx;
+	else if (c->isfullscreen)
 		wc.border_width = 0;
-	else if (c->isfloating)
-		wc.border_width = c->floatborderpx;
 	else
 		wc.border_width = c->bw;
 	if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))

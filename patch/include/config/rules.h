@@ -37,7 +37,7 @@ static const Rule rules[] = {
 
     RULE(.title = "The-Matrix-Shell", .isfullscreen = 1)
 
-    /* class        instance    title           tgmask isf mon float x,y,w,h   fbrdrpx isF skey*/
+    /* class        instance    title           tgmask isf mon float x,y,w,h      fbpx isF skey*/
     { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0,  0  },
     { NULL, "pulseeffects",     NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0,  0  },
     { NULL, "google-chrome",    NULL,           1 << 6, 0, -1, 0,0,0,0,             2,  0,  0  },

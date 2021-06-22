@@ -8,12 +8,12 @@
 +#define RULE(...) { .monitor = -1, ##__VA_ARGS__ },
 +
 +/* RULE macro helper macros */
-+#define FLOATING , .isfloating = 1
-+#define FLOATX , .floatx = 0
-+#define FLOATY , .floaty = 0
-+#define FLOATW , .floatw = 0
-+#define FLOATH , .floath = 0
-+#define FLOATBPX , .floatborderpx = 2
++#define FLOATING , .isfloating = 0
++#define FLOATX , .floatx = -1
++#define FLOATY , .floaty = -1
++#define FLOATW , .floatw = -1
++#define FLOATH , .floath = -1
++#define FLOATBPX , .fbpx = 0
 +#define FULLSC , .isfullscreen = 0
 +#define SCRATCHK , .scratchkey = 0
 +
