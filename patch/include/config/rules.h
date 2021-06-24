@@ -35,7 +35,7 @@ static const Rule rules[] = {
     RULE(.title = "(.0)", .monitor = 0)
     RULE(.title = "(.1)", .monitor = 1)
 
-    RULE(.title = "The-Matrix-Shell", .isfullscreen = 1)
+    RULE(.title = "The-Matrix-Shell", .isfullscreen = -1)
 
     /* class        instance    title           tgmask isf mon float x,y,w,h      fbpx isF skey*/
     { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0,  0  },

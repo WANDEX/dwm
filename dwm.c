@@ -369,7 +369,19 @@ applyrules(Client *c)
 				c->fbpx = r->fbpx;
 				c->hasfloatbw = 1;
 			}
-			if (r->isfullscreen) {
+			if (r->isfullscreen < 0) {
+				/* remember selmon before applying rule */
+				Monitor *prevselmon = selmon;
+				/* hide bars & setfullscreen on all mons */
+				for (m = mons; m; m = m->next) {
+					selmon = m;
+					c->fbpx = 0;
+					selmon->showbar = 1;
+					togglebar(NULL);
+					setfullscreen(c, 1);
+				}
+				selmon = prevselmon;
+			} else if (r->isfullscreen) {
 				c->fbpx = 0;
 				selmon->showbar = 1;
 				togglebar(NULL);
