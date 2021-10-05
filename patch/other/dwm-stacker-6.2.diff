@@ -108,7 +108,7 @@ index 9fd0286..6c302c3 100644
 +	int n, i;
 +	Client *c, *l;
 +
-+	if(!selmon->clients)
++	if(!selmon->clients || !selmon->sel)
 +		return -1;
 +
 +	if(arg->i == PREVSEL) {

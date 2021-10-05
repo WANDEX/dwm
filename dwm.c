@@ -2138,7 +2138,7 @@ stackpos(const Arg *arg) {
 	int n, i;
 	Client *c, *l;
 
-	if(!selmon->clients)
+	if(!selmon->clients || !selmon->sel)
 		return -1;
 
 	if(arg->i == PREVSEL) {
