@@ -46,6 +46,7 @@ static const Rule rules[] = {
     { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1200,700,      2,  0, 't' },
     { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,600,       4,  0, 'c' },
     { NULL,         NULL,       "muse",         0,      1, -1, 0,8,-1,-1,           0,  0, 'm' },
+    { NULL,         NULL,       "HTOP",         0,      1, -1, 0,8,-1,-1,           0,  0, 'h' },
     { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1200,700,      2,  0, 'p' },
     { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,-1,888,          0,  0, 'd' },
 };
@@ -54,5 +55,6 @@ static const Rule rules[] = {
 static const char *sp_term[] = {"t", "st", "-t", "scratchpad", NULL};
 static const char *sp_calc[] = {"c", "st", "-t", "calc", "-f", "monospace:size=16", "-e", "bc", "-lq", NULL };
 static const char *sp_muse[] = {"m", "st", "-t", "muse", "-e", "ncmpcpp", NULL };
+static const char *sp_htop[] = {"h", "st", "-t", "HTOP", "-e", "htop", NULL };
 static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e", "pmdr", NULL };
 static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };

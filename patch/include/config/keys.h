@@ -64,6 +64,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_Escape, quit,           {1} },
 	{ MODKEY|ShiftMask|ControlMask, XK_Escape, quit,           {0} },
+	{ MODKEY|ShiftMask|ControlMask, XK_h,      togglescratch,  {.v = sp_htop } },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = sp_term } },
 	{ MODKEY,                       XK_F3,     togglescratch,  {.v = sp_calc } },
 	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = sp_muse } },
