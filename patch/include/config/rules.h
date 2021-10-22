@@ -37,6 +37,7 @@ static const Rule rules[] = {
 
     RULE(.title = "The-Matrix-Shell", .isfullscreen = -1)
     RULE(.class = "Steam", .tags = 1 << 7, .monitor = 0)
+    RULE(.class = "steam_app_", .tags = 1 << 7, .monitor = 0)
 
     /* class        instance    title           tgmask isf mon float x,y,w,h      fbpx isF skey*/
     { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0,  0  },
