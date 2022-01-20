@@ -70,6 +70,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m,      togglescratch,  {.v = sp_muse } },
 	{ MODKEY,                       XK_p,      togglescratch,  {.v = sp_pmdr } },
 	{ MODKEY,                       XK_space,  togglescratch,  {.v = sp_drop } },
+	{ MODKEY|ControlMask,           XK_t,      togglescratch,  {.v = sp_twitchez } },
 };
 
 /* button definitions */

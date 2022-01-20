@@ -50,6 +50,7 @@ static const Rule rules[] = {
     { NULL,         NULL,       "HTOP",         0,      1, -1, 0,8,-1,-1,           0,  0, 'h' },
     { NULL,       "opaque",     "pomodoro",     0,      1, -1, -1,-1,1200,700,      2,  0, 'p' },
     { NULL,       "opaque",     "drop",         0,      1, -1, 0,8,-1,888,          0,  0, 'd' },
+    { NULL,      "twitchez",    "twitchez",     0,      1, -1, 0,8,-1,-1,           0,  0, 'e' },
 };
 
 /*First arg only serves to match against key in rules*/
@@ -59,3 +60,4 @@ static const char *sp_muse[] = {"m", "st", "-t", "muse", "-e", "ncmpcpp", NULL }
 static const char *sp_htop[] = {"h", "st", "-t", "HTOP", "-e", "htop", NULL };
 static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e", "pmdr", NULL };
 static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };
+static const char *sp_twitchez[] = {"e", "st", "-t", "twitchez", "-n", "twitchez", "-e", "twitchez", NULL };
