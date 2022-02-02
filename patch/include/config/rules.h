@@ -60,4 +60,5 @@ static const char *sp_muse[] = {"m", "st", "-t", "muse", "-e", "ncmpcpp", NULL }
 static const char *sp_htop[] = {"h", "st", "-t", "HTOP", "-e", "htop", NULL };
 static const char *sp_pmdr[] = {"p", "st", "-t", "pomodoro", "-n", "opaque", "-e", "pmdr", NULL };
 static const char *sp_drop[] = {"d", "st", "-t", "drop", "-n", "opaque", NULL };
-static const char *sp_twitchez[] = {"e", "st", "-t", "twitchez", "-n", "twitchez", "-e", "twitchez", NULL };
+static const char *sp_twitchez[] = {"e", "st", "-t", "twitchez", "-n", "twitchez", "-f", "VictorMono Nerd Font Mono:pixelsize=14", "twitchez", NULL };
+
