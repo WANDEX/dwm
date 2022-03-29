@@ -233,7 +233,7 @@
 +		invert = urg & 1 << i;
  		/* do not draw vacant tags */
  		if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
- 		continue;
+ 			continue;
 @@ -810,25 +893,44 @@ drawbar(Monitor *m)
  		w = TEXTW(tags[i]);
  		wdelta = selmon->alttag ? abs(TEXTW(tags[i]) - TEXTW(tagsalt[i])) / 2 : 0;
