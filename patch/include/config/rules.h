@@ -44,6 +44,7 @@ static const Rule rules[] = {
     { NULL,   "easyeffects",    NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0,  0  },
     { NULL, "google-chrome",    NULL,           1 << 6, 0, -1, 0,0,0,0,             2,  0,  0  },
     { "mpv",    "MPVstream",    NULL,           1 << 5, 0,  1, 0,0,0,0,             2,  0,  0  },
+    { NULL,     "rocksmith",    "Rocksmith",    1 << 7, 1,  0, 0,8,-1,-1,           0,  0, 'R' },
     { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1200,700,      2,  0, 't' },
     { NULL,         NULL,       "calc",         0,      1, -1, -1,-1,400,600,       4,  0, 'c' },
     { NULL,         NULL,       "muse",         0,      1, -1, 0,8,-1,-1,           0,  0, 'm' },
