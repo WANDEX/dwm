@@ -34,6 +34,7 @@ static const Rule rules[] = {
     /* monitor */
     RULE(.title = "(.0)", .monitor = 0)
     RULE(.title = "(.1)", .monitor = 1)
+    RULE(.title = "(.2)", .monitor = 2)
 
     RULE(.title = "The-Matrix-Shell", .isfullscreen = -1)
     RULE(.class = "Steam", .tags = 1 << 7, .monitor = 0)
