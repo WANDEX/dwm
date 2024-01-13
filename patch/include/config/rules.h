@@ -37,13 +37,22 @@ static const Rule rules[] = {
     RULE(.title = "(.2)", .monitor = 2)
 
     RULE(.title = "The-Matrix-Shell", .isfullscreen = -1)
-    RULE(.class = "Steam", .tags = 1 << 7, .monitor = 0)
-    RULE(.class = "steam_app_", .tags = 1 << 7, .monitor = 0)
+
+    RULE(.class = "steam",                   .tags = 1 << 7, .monitor = 0)
+    RULE(.class = "steam_app_",              .tags = 1 << 7, .monitor = 0)
+    RULE(.class = "easyeffects",             .tags = 1 << 7, .monitor = 1)
+
+    RULE(.class = "google-chrome",           .tags = 1 << 6, .monitor = -1)
+    RULE(.class = "firefox",                 .tags = 1 << 6, .monitor = -1)
+    RULE(.class = "firefoxdeveloperedition", .tags = 1 << 6, .monitor = -1)
+
+    RULE(.instance = "telegram-desktop",     .tags = 1 << 8, .monitor = 1)
+    RULE(.instance = "telegram-desktop", .title = "Media viewer",
+         .monitor = -1, .isfloating = 1, .fbpx = 1, .isfullscreen = 0,
+         .floatx = -1, .floaty = -1, .floatw = -1, .floath = -1
+    )
 
     /* class        instance    title           tgmask isf mon float x,y,w,h      fbpx isF skey*/
-    { NULL, "telegram-desktop", NULL,           1 << 8, 0,  1, 0,0,0,0,             2,  0,  0  },
-    { NULL,   "easyeffects",    NULL,           1 << 7, 0,  1, 0,0,0,0,             2,  0,  0  },
-    { NULL, "google-chrome",    NULL,           1 << 6, 0, -1, 0,0,0,0,             2,  0,  0  },
     { "mpv",    "MPVstream",    NULL,           1 << 5, 0,  1, 0,0,0,0,             2,  0,  0  },
     { NULL,     "rocksmith",    "Rocksmith",    1 << 7, 1,  0, 0,8,-1,-1,           0,  0, 'R' },
     { NULL,         NULL,       "scratchpad",   0,      1, -1, -1,-1,1200,700,      2,  0, 't' },
