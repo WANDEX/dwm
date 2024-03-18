@@ -1,6 +1,6 @@
 --- a/config.def.h	2021-06-01 23:29:22.213458220 +0300
 +++ b/config.def.h	2021-06-02 00:06:32.129206926 +0300
-@@ -1,115 +1,52 @@
+@@ -1,115 +1,53 @@
  /* See LICENSE file for copyright and license details. */
  
  /* appearance */
@@ -24,6 +24,7 @@
 +static int showbar                  = 1;    /* 0 means no bar */
 +static int topbar                   = 1;    /* 0 means bottom bar */
 +static const char *fonts[] = {
++       "NotoMono Nerd Font:size=8",
 +       "monospace:size=8",
 +       "JoyPixels:pixelsize=8:antialias=true:autohint=true",
 +       "FontAwesome:pixelsize=8",

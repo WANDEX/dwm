@@ -19,6 +19,7 @@ static unsigned int snap            = 2;    /* snap pixel */
 static int showbar                  = 1;    /* 0 means no bar */
 static int topbar                   = 1;    /* 0 means bottom bar */
 static const char *fonts[] = {
+       "NotoMono Nerd Font:size=8",
        "monospace:size=8",
        "JoyPixels:pixelsize=8:antialias=true:autohint=true",
        "FontAwesome:pixelsize=8",
