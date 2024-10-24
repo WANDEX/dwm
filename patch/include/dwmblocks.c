@@ -1,4 +1,6 @@
-static int dwmblockssig;
+#include "dwmblocks.h"
+
+
 pid_t dwmblockspid = 0;
 
 int

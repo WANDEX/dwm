@@ -1,5 +1,8 @@
-void
-gaplessgrid(Monitor *m) {
+#pragma once
+
+static void
+gaplessgrid(Monitor *m)
+{
 	unsigned int n, cols, rows, cn, rn, i, cx, cy, cw, ch;
 	Client *c;
 

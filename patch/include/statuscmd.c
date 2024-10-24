@@ -1,3 +1,6 @@
+#include "statuscmd.h"
+
+
 void
 copyvalidchars(char *text, char *rawtext)
 {

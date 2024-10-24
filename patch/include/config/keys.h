@@ -1,3 +1,5 @@
+#pragma once
+
 /* key definitions */
 #define MODKEY Mod4Mask
 #define AltMask Mod1Mask

@@ -1,3 +1,6 @@
+#include "xresources.h"
+
+
 void
 resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst)
 {

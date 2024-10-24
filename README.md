@@ -69,7 +69,7 @@ This makes **dwm.c** more readable, and **.diff** files contain only changes tha
 
 ## About .diff patch files included inside patch/ dir
 
-Almost all patches contain changes and are not original, many **.diff** files are merged because the same parts of the files are being edited.
+Almost all patches contain changes and are not original, many **.diff** files are merged because the same parts of the files were been affected.
 
 That is why I have included links to the original patch pages to make it easier to find them.
 
@@ -77,7 +77,7 @@ If you keep the original patching order and apply the command `patch -p1 -f -R` 
 The files will revert to their original state, without failed hunks.
 
 Do not forget to remove from **include.c & include.h** patch specific files for patches that you are reversed,\
-and update config files in `patch/include/config/`, as they are not affected by **.diff** files.
+and update config files in `patch/include/config/`, as they are not affected by the **.diff** files.
 
 ##### [The order of applying a set of patches - from the first to the last.](https://github.com/WANDEX/dwm/blob/master/patch/active_patch_list)
 

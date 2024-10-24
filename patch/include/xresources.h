@@ -1,4 +1,7 @@
+#pragma once
+
 #include <X11/Xresource.h>
+
 
 /* Xresources preferences */
 enum resource_type {
@@ -13,5 +16,5 @@ typedef struct {
 	void *dst;
 } ResourcePref;
 
-static void load_xresources(void);
-static void resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst);
+void load_xresources(void);
+void resource_load(XrmDatabase db, char *name, enum resource_type rtype, void *dst);

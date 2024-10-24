@@ -1,3 +1,5 @@
+#include "toggleextrabar.h"
+
 void
 toggleextrabar(const Arg *arg)
 {

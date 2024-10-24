@@ -1,3 +1,6 @@
+#include "systray.h"
+
+
 static Systray *systray = NULL;
 
 unsigned int

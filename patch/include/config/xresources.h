@@ -1,3 +1,5 @@
+#pragma once
+
 /* Xresources preferences to load at startup */
 ResourcePref resources[] = {
 	{ "systraypinning",             INTEGER,   &systraypinning                  },

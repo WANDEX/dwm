@@ -1,5 +1,8 @@
-void
-horizgrid(Monitor *m) {
+#pragma once
+
+static void
+horizgrid(Monitor *m)
+{
 	Client *c;
 	unsigned int n, i;
 	int w = 0;

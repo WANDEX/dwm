@@ -1,1 +1,3 @@
-static void toggleextrabar(const Arg *arg);
+#pragma once
+
+void toggleextrabar(const Arg *arg);

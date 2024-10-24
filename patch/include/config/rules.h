@@ -1,3 +1,5 @@
+#pragma once
+
 /* There are two options when it comes to per-client rules:
  *  - a typical struct table or
  *  - using the RULE macro

@@ -1,1 +1,4 @@
-static void togglefullscr(const Arg *arg);
+#pragma once
+
+
+void togglefullscr(const Arg *arg);

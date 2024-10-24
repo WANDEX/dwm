@@ -1,3 +1,5 @@
+#pragma once
+
 #define SYSTEM_TRAY_REQUEST_DOCK    0
 
 /* XEMBED messages */
@@ -25,13 +27,13 @@ struct Systray {
 };
 
 /* function declarations */
-static Atom getatomprop(Client *c, Atom prop);
-static unsigned int getsystraywidth();
-static void removesystrayicon(Client *i);
-static void resizebarwin(Monitor *m);
-static void resizerequest(XEvent *e);
-static Monitor *systraytomon(Monitor *m);
-static void updatesystray(void);
-static void updatesystrayicongeom(Client *i, int w, int h);
-static void updatesystrayiconstate(Client *i, XPropertyEvent *ev);
-static Client *wintosystrayicon(Window w);
+Atom getatomprop(Client *c, Atom prop);
+unsigned int getsystraywidth();
+void removesystrayicon(Client *i);
+void resizebarwin(Monitor *m);
+void resizerequest(XEvent *e);
+Monitor *systraytomon(Monitor *m);
+void updatesystray(void);
+void updatesystrayicongeom(Client *i, int w, int h);
+void updatesystrayiconstate(Client *i, XPropertyEvent *ev);
+Client *wintosystrayicon(Window w);

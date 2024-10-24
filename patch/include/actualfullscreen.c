@@ -1,3 +1,5 @@
+#include "actualfullscreen.h"
+
 void
 togglefullscr(const Arg *arg)
 {

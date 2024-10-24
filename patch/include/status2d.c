@@ -1,3 +1,6 @@
+#include "status2d.h"
+
+
 int
 drawstatusbar(Monitor *m, int bh, char* stext, int stw, int stp, int align)
 {

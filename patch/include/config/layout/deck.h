@@ -1,5 +1,8 @@
-void
-deck(Monitor *m) {
+#pragma once
+
+static void
+deck(Monitor *m)
+{
 	unsigned int i, n, h, mw, my;
 	Client *c;
 

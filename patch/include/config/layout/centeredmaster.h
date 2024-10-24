@@ -1,4 +1,6 @@
-void
+#pragma once
+
+static void
 centeredmaster(Monitor *m)
 {
 	unsigned int i, n, h, mw, mx, my, oty, ety, tw;

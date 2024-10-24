@@ -1,2 +1,5 @@
-static int getdwmblockspid();
-static void sigdwmblocks(const Arg *arg);
+#pragma once
+
+int dwmblockssig;
+int getdwmblockspid();
+void sigdwmblocks(const Arg *arg);

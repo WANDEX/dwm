@@ -1,5 +1,8 @@
+#pragma once
+
 static void
-bstack(Monitor *m) {
+bstack(Monitor *m)
+{
 	int w, h, mh, mx, tx, ty, tw;
 	unsigned int i, n;
 	Client *c;
